@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        form{
+            display: inline-block;
+        }
+    </style>
+    <title>React App</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      // Create handlers to increase and decrease vehicle count here
+      let inputBut=React.createRef();
+      let inputDec=React.createRef();
+      let inc=0
+      let dec=0
+      let scooty=0;
+      let bicycle=0;
+        function submitHandel(event){
+            inc+=1;
+            console.log(inc)
+            // console.log("inc",inputBut.current[0].innerHTML)
+            event.preventDefault();
+            rootElement.render(<App />);
+        }
+        function submitDec(event){
+            if(inc>0){
+                inc-=1
+            }
+            // console.log("dnc",inputDec.current[0].innerHTML)
+            rootElement.render(<App />);
+            event.preventDefault();
+        }
+        function subBikeInc(event){
+            dec+=1;
+            event.preventDefault();
+            rootElement.render(<App />);
+        }
+        function subBikeDec(event){
+            if(dec>0){
+                dec-=1
+            }
+            rootElement.render(<App />);
+            event.preventDefault();
+        }
+        function subScootyInc(event){
+            scooty+=1;
+            event.preventDefault();
+            rootElement.render(<App />);
+        }
+        function subScootyDec(event){
+            if(scooty>0){
+                scooty-=1
+            }
+            rootElement.render(<App />);
+            event.preventDefault();
+        }
+        function subBiCycleInc(event){
+            bicycle+=1;
+            event.preventDefault();
+            rootElement.render(<App />);
+        }
+        function subBiCycleDec(event){
+            if(bicycle>0){
+                bicycle-=1
+            }
+            rootElement.render(<App />);
+            event.preventDefault();
+        }
+      const App = () => (
+        <>
+          <p>List of all the vehicles count in the parking.</p>
+          <ol>
+            <li>
+              <p>
+                <b>Car: {inc} </b> &emsp;
+                {<>
+                 <form ref={inputBut} onSubmit={submitHandel}>
+                    <button>Increase</button>
+                </form> &emsp;
+                <form ref={inputDec} onSubmit={submitDec}>
+                    <button>Decrease</button>
+                </form>
+                </>}
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Bike:{dec} </b> &emsp;
+                {<>
+                 <form onSubmit={subBikeInc}>
+                    <button>Increase</button>
+                </form> &emsp;
+                <form onSubmit={subBikeDec}>
+                    <button>Decrease</button>
+                </form>
+                </>}
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Scooty:{scooty} </b> &emsp;
+                {<>
+                 <form onSubmit={subScootyInc}>
+                    <button>Increase</button>
+                </form> &emsp;
+                <form onSubmit={subScootyDec}>
+                    <button>Decrease</button>
+                </form>
+                </>}
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Bicycle: {bicycle}</b> &emsp;
+                {<>
+                 <form onSubmit={subBiCycleInc}>
+                    <button>Increase</button>
+                </form> &emsp;
+                <form onSubmit={subBiCycleDec}>
+                    <button>Decrease</button>
+                </form>
+                </>}
+                </p>
+            </li>
+          </ol>
+        </>
+      );
+
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+    </script>
+  </body>
+</html>
